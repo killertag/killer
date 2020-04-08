@@ -41,36 +41,15 @@ public class Booking {
 		return true;
 	}
 
-	public static int getGenerateIdBooking() {
-		return generateIdBooking;
-	}
-
-	public static void setGenerateIdBooking(int generateIdBooking) {
-		Booking.generateIdBooking = generateIdBooking;
-	}
-
+	
+	//getter and setter utili
 	public int getIdBooking() {
 		return idBooking;
 	}
 
-	public void setIdBooking(int idBooking) {
-		this.idBooking = idBooking;
-	}
-
-	public HashMap<Integer, Ticket> getTicketList() {
-		return ticketList;
-	}
-
-	public void setTicketList(HashMap<Integer, Ticket> ticketList) {
-		this.ticketList = ticketList;
-	}
 
 	public Date getDateBooking() {
 		return dateBooking;
-	}
-
-	public void setDateBooking(Date dateBooking) {
-		this.dateBooking = dateBooking;
 	}
 	
 	

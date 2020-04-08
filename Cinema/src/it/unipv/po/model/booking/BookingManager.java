@@ -6,13 +6,16 @@ import java.util.HashMap;
 
 public class BookingManager {
 	
-	//use the Singleton pattern
 	private static BookingManager instance;
 	private HashMap<Integer, Booking> bookingList; 
 	private Date data; //per il momento non gli sappiamo usareeeeeeeeeeeee
 	private Calendar calendar; // anche questo non lo sappiamo usareeeeeeeeee
 	// a che serve sto booking se non fa una minkiaaaaaaaa
 	
+	
+	/*
+	 * uso del Singleton pattern per evitare l'instaziamento di piu instanze
+	 */
 	private BookingManager() {
 		bookingList = new HashMap<Integer, Booking>();
 	}
@@ -24,7 +27,7 @@ public class BookingManager {
 		}
 		return instance;
 	}
-	
+	//////// FINE SINGLETON /////////////
 	
 	
 	public Booking getBooking(int id) {
@@ -44,7 +47,7 @@ public class BookingManager {
 		return true;
 	}
 	
-	public void addBooking(Date d) {
+	public void addBooking() {
 		Booking book = new Booking();
 		bookingList.put(book.getIdBooking(), book);
 	}
