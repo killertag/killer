@@ -1,5 +1,6 @@
 package it.unipv.po.model.booking;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -11,10 +12,18 @@ public class Booking {
 	private static int generateIdBooking = 0;
 	private int idBooking;
 	private HashMap<Integer, Ticket> ticketList;
-	private Date dateBooking;
+	private LocalDate date;
 	
-	public Booking() {
+	/* LocalDate non si può istanziare. Per ricavare la data
+	 * usare il metodo statico LocalDate.now()
+	 * se voglio confrontare la corrispondeza tra due date, usare il metodo
+	 * di equals() (come le stringhe)
+	 */
+	private LocalDate dateBooking;
+	
+	public Booking(LocalDate date) {
 		
+		this.date = date;
 		ticketList = new HashMap<>();
 		
 	}
@@ -48,8 +57,8 @@ public class Booking {
 	}
 
 
-	public Date getDateBooking() {
-		return dateBooking;
+	public String getDateBooking() {
+		return date.toString();
 	}
 	
 	
