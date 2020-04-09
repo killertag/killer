@@ -5,7 +5,9 @@ import java.util.List;
 
 public class Theater {
 	
-	//attributi
+	/* Id generale usato per la creazioni di id univoci per ogni sala
+	 * (qual è l'utilità di un id??)
+	 */
 	private static int idGeneral = 0;
 	
 	private String theaterName; 
@@ -24,7 +26,7 @@ public class Theater {
 		dailyMovies = new ArrayList<Movie>();
 		seatList = new ArrayList<Seat>();
 		
-		createSeats(capienza);
+		createSeatsList(capienza);
 		
 		/* Assegnamento automatico dell'id della sala
 		 * 
@@ -35,11 +37,13 @@ public class Theater {
 
 
 
-	//metodi
+	/* la variabile capienza nel costruttore verra usata dalla seguente funzione
+	 * che crea una lista di Seat lunga quanto 'capienza'.
+	 * Inoltre ogni sedia sarà numerata dalla variabile 'i' del ciclo for dentro
+	 * la funzione
+	 */
 	
-	private void createSeats(int capienza) {
-		
-		//i corrisponde al numero della sedia nella sala
+	private void createSeatsList(int capienza) {
 		for(int i = 0; i < capienza; i++) {
 			seatList.add(new Seat(i));
 		}
@@ -47,7 +51,7 @@ public class Theater {
 	
 	
 	/*
-	 * cerca numero disponibilita posti 
+	 * Ritorna numero disponibilità dei posti per tale sala
 	 */
 	public int getAvailabilitySeats() {
 		
@@ -62,30 +66,22 @@ public class Theater {
 	}
 	
 	
-	
-	public boolean addMovie(Movie movie) {
-		
-		/* SE la lista dei filmo è gia piena, cioe ne contiene 3,
-		 * allora ritorna 'un errore'
-		 */
-		if(dailyMovies.size() == 3) {
-			return false;
-		}
-		
-		if(dailyMovies.add(movie))
-			return true;
-		
-		return false;
-	}
-	
-	public void editMovieList(Movie movie, int fasciaOraria) {
+	/* Permette di aggiungere un movie alla lista giornaliera, specificando
+	 * la fascia oraria di proiezione
+	 */
+	public boolean editMovieList(Movie movie, int fasciaOraria) {
 		
 		/* La variabile fascia orario ha i seguenti significati:
 		 * 0: 18-20
 		 * 1: 20-22
 		 * 2: 22-24
 		 */
+		
+		//verifica correttezza variabile fasciaOraria
+		if (fasciaOraria < 0 || fasciaOraria > 2) return false;
+		
 		dailyMovies.add(fasciaOraria, movie);
+		return true;
 	}
 	
 	// restituisce la sedia dato il numero
@@ -100,6 +96,7 @@ public class Theater {
 		}
 	}
 	
+	// Ritorna il numero di posti totali della sala
 	public int getCapacity() {
 		return seatList.size();
 	}
