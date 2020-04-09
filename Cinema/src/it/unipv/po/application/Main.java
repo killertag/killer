@@ -1,6 +1,7 @@
 package it.unipv.po.application;
 
 
+import it.unipv.po.controllers.AddSalaControll;
 import it.unipv.po.model.cinema.Cinema;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,9 +27,12 @@ public class Main extends Application {
 	 * All'avvio si ha la GestioneView
 	 */
 	public static BorderPane rootView;
-	public static SplitPane saleView;
 	public static AnchorPane filmView;
 	public static AnchorPane prenotazioniView;
+	public static SplitPane saleView;
+	public static AnchorPane addSala;
+    public static Stage addSalaStage;
+	
 	
 	//elementi del modello
 	public static final Cinema myCinema = new Cinema("Cinema Prova", "Indirizzo prova");
@@ -83,6 +87,16 @@ public class Main extends Application {
 			loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/PrenotazioneView.fxml"));
 			this.prenotazioniView = (AnchorPane) loader.load();
+			
+			loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/AddSala.fxml"));
+			this.addSala = (AnchorPane) loader.load();
+			
+			Scene addSalaScene = new Scene(addSala, 250, 350);
+			addSalaStage = new Stage();
+			addSalaStage.setScene(addSalaScene);
+			addSalaStage.setResizable(false);
+			
 		}
 			
 		catch(Exception e) {
