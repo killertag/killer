@@ -6,6 +6,8 @@ import java.util.List;
 
 import it.unipv.po.model.booking.Booking;
 
+
+
 public class Cinema {
 	
 	
