@@ -2,15 +2,24 @@ package it.unipv.po.model.cinema;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
+
+import com.sun.glass.ui.CommonDialogs.Type;
+import com.sun.javafx.collections.MappingChange.Map;
 
 import it.unipv.po.model.booking.Booking;
 import it.unipv.po.model.booking.BookingManager;
+import it.unipv.po.model.operator.Cashier;
+import it.unipv.po.model.operator.Manager;
+import it.unipv.po.model.operator.Operator;
+import it.unipv.po.model.operator.TypeOperator;
 
 
 
-public class Cinema {
+public class Cinema<E> {
 	
 	/* Nell'eventualità che venga creato più di un cinema, questa variabile
 	 * statica verrà usata per assegnare automaticamente un id diverso ad ogni 
@@ -28,6 +37,10 @@ public class Cinema {
 	private HashMap<String, Movie> movieList;
 	private BookingManager bookingManager;  //Una sola istanza per cinema
 	
+	//aggiungo la lista degli operatori che lavorano al cinema ed uso un hashmap per facilitare la ricerca
+	private HashMap<String, Operator> operatorList;
+	
+	
 	public Cinema(String name, String address) {
 		this.address = address;
 		this.cinemaName = name;
@@ -38,11 +51,59 @@ public class Cinema {
 		
 		theaterList = new HashMap<String, Theater>();
 		movieList = new HashMap<String, Movie>();
+		operatorList = new HashMap<String, Operator>();
+		
 		
 		idGeneral++;
 	}
 	
 	//metodi 
+	
+	/*metodo per la restituzione dell oggetto operatore*/
+	public Operator getOperator(String username) {
+	
+		Operator op = operatorList.get(username);
+	
+		return op;
+	}
+	
+	/*metodo per la restituizione degli operatori che utilizzano il sistema  */
+	
+	public String getOperatorUseSystemString() {
+		String s = "List Operator\n\n";
+	
+		for(Entry<String, Operator> list: operatorList.entrySet()) {
+			String key = list.getKey();
+			Operator op = list.getValue();
+			String typeOp = op.getTypeOperator();
+			s += key + " " +typeOp +"\n";
+		}
+		/*
+		for(String key1: operatorList.keySet()) {
+			s+= key1.toString() + "\n";
+		}
+		*/
+		System.out.println(s);
+		
+		return s;
+	}
+	
+	/* metodo per l-aggiunta di operatori al sistema
+	 * */
+	public boolean addOperator(TypeOperator type, String name, String surname) {
+		if(type.equals(TypeOperator.CASHIER)) {
+			Operator cashier = new Cashier(name, surname);
+			operatorList.put(cashier.getUsername(), cashier);
+			return true;
+		}
+		else if(type.equals(TypeOperator.MANAGER)) {
+			Operator manager = new Manager(name, surname);
+			operatorList.put(manager.getUsername(), manager);
+			return true;
+		}
+		return false;
+	}
+	
 	
 	/* Aggiunta delle sale e dei film. é consigliato usare un nome ben preciso
 	 * che identifica le sale ed i film in modo univoco nell'hashMap (ex: 'Sala 1')
