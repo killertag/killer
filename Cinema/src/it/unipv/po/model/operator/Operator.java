@@ -42,13 +42,13 @@ public abstract class Operator {
 	
 	//metodo che restituisce che tipo di operatore e'
 	
-	public String getTypeOperator() {
-		String s = "";
+	public TypeOperator getTypeOperator() {
+		TypeOperator s = null;
 		if(editing) {
-			s+= "Manager";
+			s= TypeOperator.MANAGER;
 		}
 		else if(!editing) {
-			s+= "Cashier";
+			s= TypeOperator.CASHIER;
 		}
 		
 		return s;
