@@ -1,5 +1,8 @@
 package it.unipv.po.view;
 
+/*INTERFACCIA BASILARE NON PER IL PROGETTO MA SOLO PER FARE ALCUNI TEST L'INTERFACCIA VERA E' QUELLA CHE STA FACENDO ANDREA CON JAVAFX */
+
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
