@@ -86,10 +86,6 @@ public class ViewLogin extends JFrame{
 	}
 
 
-	public void setPassword(JTextField password) {
-		this.password = password;
-	}
-
 
 	public JButton getButtonConferma() {
 		return buttonConferma;

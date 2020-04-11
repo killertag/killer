@@ -7,10 +7,5 @@ import javax.swing.JTextField;
 public class ViewManager extends JFrame {
 	
 	
-	private JTextField  
 	
-	
-	public ViewManager() {
-		
-	}
 }
