@@ -75,7 +75,7 @@ public class Cinema<E> {
 		for(Entry<String, Operator> list: operatorList.entrySet()) {
 			String key = list.getKey();
 			Operator op = list.getValue();
-			String typeOp = op.getTypeOperator();
+			TypeOperator typeOp = op.getTypeOperator();
 			s += key + " " +typeOp +"\n";
 		}
 		/*
